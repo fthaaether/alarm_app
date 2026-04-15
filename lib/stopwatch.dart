@@ -11,6 +11,55 @@ class _StopWatchState extends State<StopWatch> {
   int jam = 0;
   int menit = 0;
   int detik = 0;
+
+  // Timer? timer;
+  // bool isRunning = false;
+
+  // List<String> laps = [];
+
+  // String format(int n) => n.toString().padLeft(2, '0');
+
+  // @override
+  // void dispose() {
+  //   timer?.cancel();
+  //   super.dispose();
+  // }
+
+  // void startStop() {
+  //   if (isRunning) {
+  //     timer?.cancel();
+  //   } else {
+  //     timer = Timer.periodic(const Duration(seconds: 1), (timer) {
+  //       setState(() {
+  //         detik++;
+  //         if (detik >= 60) {
+  //           detik = 0;
+  //           menit++;
+  //         }
+  //         if (menit >= 60) {
+  //           menit = 0;
+  //           jam++;
+  //         }
+  //       });
+  //     });
+  //   }
+
+  //   setState(() {
+  //     isRunning = !isRunning;
+  //   });
+  // }
+
+  // void reset() {
+  //   timer?.cancel();
+  //   setState(() {
+  //     jam = 0;
+  //     menit = 0;
+  //     detik = 0;
+  //     isRunning = false;
+  //     laps.clear();
+  //   });
+  // }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -48,6 +97,23 @@ class _StopWatchState extends State<StopWatch> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
+                // InkWell(
+                //   onTap: () {
+                //     reset();
+                //   },
+                //   child: Icon(Icons.history),
+                // ),
+                // SizedBox(width: 50,),
+                // InkWell(
+                //   onTap: () {
+                //     startStop();
+                //   },
+                //   child: Icon(Icons.play_arrow, size: 50,),
+                // ),
+                // SizedBox(width: 50,),
+                // InkWell(
+                //   child: Icon(Icons.alarm),
+                // ),
                 SizedBox(height: 600),
                 InkWell(
                   onTap: () {
@@ -64,13 +130,17 @@ class _StopWatchState extends State<StopWatch> {
                 InkWell(
                   onTap: () {
                     setState(() {
-                      jam = jam + 1;
-                    });
-                    setState(() {
-                      menit = menit + 1;
-                    });
-                    setState(() {
-                      detik = detik + 1;
+                      detik++;
+
+                      if (detik >= 60) {
+                        detik = 0;
+                        menit++;
+
+                        if (menit >= 60) {
+                          menit = 0;
+                          jam++;
+                        }
+                      }
                     });
                   },
                   child: Icon(Icons.play_arrow, size: 100),
